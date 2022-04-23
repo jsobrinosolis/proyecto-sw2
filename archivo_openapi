@@ -1,0 +1,577 @@
+openapi: '3.0.3'
+info:
+  title: API para eventos
+  version: '0.1.0'
+  description: |
+    # Título
+    API para eventos que permite operaciones CRUD con eventos, lugares y organizadores.
+    
+    ## Subtítulo
+    Ejemplo
+tags:
+  - name: evento
+    description: eventos
+  - name: lugar
+    description: lugares
+  - name: organizador
+    description: organizadores
+paths:
+  /eventos:
+    get:
+      summary: Obtener todos los eventos
+      description:
+        Obtener un listado de todos los eventos disponibles
+      operationId: getEventos
+      tags:
+        - evento
+      responses:
+        '200':
+          description: OK
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventos'
+    post:
+      summary: Crear un nuevo evento
+      description: TODO
+      operationId: createEvento
+      tags:
+        - evento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/evento'
+      responses:
+        '201':
+          description: Evento creado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/info_nuevo_elemento'
+        default:
+          description: Error al crear el evento
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /eventos/{id}:
+    get:
+      summary: Obtener información de un evento concreto
+      description: TODO
+      operationId: getEvento
+      tags:
+        - evento
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/evento'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/evento'
+        default:
+          description: Error al acceder al evento
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+        - $ref: '#/components/parameters/id'
+    put:
+      summary: Modificar información de un evento concreto
+      description: TODO
+      operationId: updateEvento
+      tags:
+        - evento
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '201':
+          description: Ok
+        default:
+          description: Error al acceder al evento
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/evento_editado'
+    delete:
+      summary: Borrar un evento especifico
+      description: TODO
+      operationId: deleteEvento
+      tags:
+        - evento
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Ok
+        default:
+          description: Error al acceder al evento
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /lugares:
+    get:
+      summary: Obtener todos los lugares
+      description:
+        Obtener un listado de todos los lugares disponibles
+      operationId: getLugares
+      tags:
+        - lugar
+      responses:
+        '200':
+          description: OK
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/lugares'
+    post:
+      summary: Crear un nuevo lugar
+      description: TODO
+      operationId: createLugar
+      tags:
+        - lugar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/lugar'
+      responses:
+        '201':
+          description: Lugar creado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/info_nuevo_elemento'
+        default:
+          description: Error al crear el lugar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /lugares/{id}:
+    get:
+      summary: Obtener información de un lugar concreto
+      description: TODO
+      operationId: getLugar
+      tags:
+        - lugar
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/lugar'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/lugar'
+        default:
+          description: Error al acceder al lugar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+        - $ref: '#/components/parameters/id'
+    put:
+      summary: Modificar información de un lugar concreto
+      description: TODO
+      operationId: updateLugar
+      tags:
+        - lugar
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '201':
+          description: Ok
+        default:
+          description: Error al acceder al lugar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/lugar_editado'
+    delete:
+      summary: Borrar un lugar especifico
+      description: TODO
+      operationId: deleteLugar
+      tags:
+        - lugar
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Ok
+        default:
+          description: Error al acceder al lugar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /organizadores:
+    get:
+      summary: Obtener todos los organizadores
+      description:
+        Obtener un listado de todos los organizadores existentes
+      operationId: getOrganizadores
+      tags:
+        - organizador
+      responses:
+        '200':
+          description: OK
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organizadores'
+    post:
+      summary: Crear un nuevo organizador
+      description: TODO
+      operationId: createOrganizador
+      tags:
+        - organizador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organizador'
+      responses:
+        '201':
+          description: Organizador creado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/info_nuevo_elemento'
+        default:
+          description: Error al crear el organizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'  
+  /organizadores/{id}:
+    get:
+      summary: Obtener información de un organizador concreto
+      description: TODO
+      operationId: getOrganizador
+      tags:
+        - organizador
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organizador'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/organizador'
+        default:
+          description: Error al acceder al organizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+        - $ref: '#/components/parameters/id'
+    put:
+      summary: Modificar información de un organizador concreto
+      description: TODO
+      operationId: updateOrganizador
+      tags:
+        - organizador
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '201':
+          description: Ok
+        default:
+          description: Error al acceder al organizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organizador_editado'
+    delete:
+      summary: Borrar un organizador especifico
+      description: TODO
+      operationId: deleteOrganizador
+      tags:
+        - organizador
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Ok
+        default:
+          description: Error al acceder al organizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /organizadores/{id}/eventos:
+    get:
+      summary: Obtener los eventos de un organizador concreta
+      operationId: getEventoByIdOrganizador
+      tags:
+        - organizador
+        - evento
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventos'
+        default:
+          description: Error al acceder al organizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    post:
+      summary: Crear un nuevo evento para el organizador
+      operationId: addEventoByIdOrganizador
+      tags:
+        - organizador
+        - evento
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/info_nuevo_elemento'
+        default:
+          description: Error al acceder al organizador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/evento'
+  /lugares/{id}/eventos:
+    get:
+      summary: Obtener los eventos de un lugar concreto
+      operationId: getEventoByIdLugar
+      tags:
+        - lugar
+        - evento
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventos'
+        default:
+          description: Error al acceder al lugar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    post:
+      summary: Crear un nuevo evento para el lugar
+      operationId: addEventoByIdLugar
+      tags:
+        - lugar
+        - evento
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/info_nuevo_elemento'
+        default:
+          description: Error al acceder al lugar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/evento'
+components:
+  parameters:
+    id:
+      name: id
+      in: path
+      description: ID del elemento
+      required: true
+      schema:
+        $ref: '#/components/schemas/id'
+  schemas:
+    id:
+      type: integer
+      minimum: 1
+    error:
+      type: object
+      properties:
+        descripcion:
+          type: string
+        codigo:
+          type: integer
+      example: {
+        "descripcion": "Datos introducidos erroneos",
+        "codigo": 400}
+    info_nuevo_elemento:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+      example: {"id": 123}
+    eventos:
+      type: array
+      items:
+        $ref: '#/components/schemas/evento'
+    lugares:
+      type: array
+      items:
+        $ref: '#/components/schemas/lugar'
+    organizadores:
+      type: array
+      items:
+        $ref: '#/components/schemas/organizador'
+    evento:
+      allOf:
+        - $ref: '#/components/schemas/evento_editado'
+        - required:
+          - titulo
+          - descripcion
+          - duracion
+          - aforo
+      example:
+        {"titulo": "Concierto Coldplay",
+        "descripcion": "Espectacular concierto de Coldplay que vuelve a España tras años sin venir",
+        "duracion": 90,
+        "aforo": 30000
+      }
+    lugar:
+      allOf:
+        - $ref: '#/components/schemas/lugar_editado'
+        - required:
+          - nombre
+          - ubicacion
+          - ciudad
+      example:
+        {"nombre": "Santiago Bernabeu",
+        "ubicacion": "Paseo de la Castellana nº 138",
+        "ciudad": "Madrid"
+      }
+    organizador:
+      allOf:
+        - $ref: '#/components/schemas/organizador_editado'
+        - required:
+          - nombre_empresa
+          - pais_origen
+        - oneOf:
+          - required:
+            - dueño
+          - required:
+            - dueños
+      example:
+        {"nombre_empresa": "De la Riva",
+        "pais_origen": "España",
+        "dueño": "José Morán Arteaga"
+      }
+    evento_editado:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        titulo:
+          type: string
+        descripcion:
+          type: string
+        aforo:
+          type: integer
+        duracion:
+          type: integer
+        fecha:
+          type: string
+          format: date
+        hora_inicio:
+          type: string
+          format: time
+        patrocinadores:
+          $ref: '#/components/schemas/array_organizadores'
+      example:
+        {"titulo": "Concierto Coldplay"}
+    lugar_editado:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        nombre:
+          type: string
+        ubicacion:
+          type: string
+        ciudad:
+          type: string
+      example:
+        {"nombre": "Santiago Bernabeu"}
+    organizador_editado:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        nombre_empresa:
+          type: string
+        pais_origen:
+          type: string
+        dueño:
+          $ref: '#/components/schemas/persona'
+        dueños:
+          $ref: '#/components/schemas/array_personas'
+      example:
+        {"nombre": "Santiago Bernabeu"}
+    array_organizadores:
+      type: array
+      items:
+        $ref: '#/components/schemas/organizador'
+    array_personas:
+      type: array
+      items:
+        $ref: '#/components/schemas/persona'
+    persona:
+      type: object
+      required:
+        - nombre
+      properties:
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        edad:
+          type: integer
+      example: {"nombre": "David", "apellidos": "Ashby"}
