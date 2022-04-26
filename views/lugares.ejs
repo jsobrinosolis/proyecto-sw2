@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+  <form method="post">
+    <label for="team">Introduzca los datos del nuevo lugar:</label><br>
+    <input type="text" id="nombre" name="nombre" placeholder="Nombre"><br>
+    <input type="text" id="ubicacion" name="ubicacion" placeholder="Dirección"><br>
+    <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad"><br>
+    <input type="submit" value="Submit"><br>
+  </form><br>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Ubicación</th>
+      <th>Ciudad</th>
+    </tr>
+    <% array_lugares.forEach(function(item){ %>
+      <tr>
+        <td><%= item.nombre %></td>
+        <td><%= item.ubicacion %></td>
+        <td><%= item.ciudad %></td>
+      </tr>
+    <% }); %>
+  </table>
+  </body>
+</html>
