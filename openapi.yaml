@@ -496,14 +496,14 @@ components:
           - pais_origen
         - oneOf:
           - required:
-            - dueño
+            - owner
           - required:
-            - dueños
+            - owners
       example:
         {"nombre_empresa": "De la Riva",
         "pais_origen": "España",
-        "dueño": "José Morán Arteaga"
-      }
+        "owner": "José Morán Arteaga"
+        }
     evento_editado:
       type: object
       additionalProperties: false
@@ -549,9 +549,9 @@ components:
           type: string
         pais_origen:
           type: string
-        dueño:
+        owner:
           $ref: '#/components/schemas/persona'
-        dueños:
+        owners:
           $ref: '#/components/schemas/array_personas'
       example:
         {"nombre": "Santiago Bernabeu"}
