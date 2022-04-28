@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('lugares', { title: 'Lugares', array_lugares})
+  //res.render('lugares', { title: 'Lugares', array_lugares })
+  res.json(array_lugares)
 });
 
 router.post('/', function(req, res, next) {
@@ -12,7 +13,8 @@ router.post('/', function(req, res, next) {
     ubicacion: req.body.ubicacion,
     ciudad: req.body.ciudad
   })
-  res.render('lugares', { title: 'Lugares', array_lugares})
+  //res.render('lugares', { title: 'Lugares', array_lugares})
+  res.json(array_lugares)
 });
 
 array_lugares = [
