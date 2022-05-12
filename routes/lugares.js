@@ -1,13 +1,22 @@
 var express = require('express');
 var router = express.Router();
+const dbo = require('../db/connection');
 
-/* GET home page. */
+const connection = dbo.getDb();
+
+/* GET all lugares. */
 router.get('/', function(req, res, next) {
-  //res.render('lugares', { title: 'Lugares', array_lugares })
-  res.json(array_lugares)
+  connection.collection('lugares').find({}).limit(5)
+      .toArray(function (err, result){
+        if (err){
+          res.status(400).send('Error al buscar lugares');
+        } else {
+          res.json(result);
+        }
+      });
 });
 
-router.post('/', function(req, res, next) {
+/*router.post('/', function(req, res, next) {
   array_lugares.push({
     nombre: req.body.nombre,
     ubicacion: req.body.ubicacion,
@@ -16,6 +25,12 @@ router.post('/', function(req, res, next) {
   //res.render('lugares', { title: 'Lugares', array_lugares})
   res.json(array_lugares)
 });
+
+router.get('/:id', function(req, res) {
+  id = req.params.id;
+  console.log(id)
+  res.json(array_lugares[id])
+});*/
 
 array_lugares = [
   {

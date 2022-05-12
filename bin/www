@@ -4,9 +4,18 @@
  * Module dependencies.
  */
 
+require('dotenv').config();
 var app = require('../app');
+const dbo = require('../db/connection');
 var debug = require('debug')('proyecto-sw2:server');
 var http = require('http');
+
+dbo.connectToServer(function (err) {
+  if (err) {
+    console.error(err);
+    process.exit();
+  }
+});
 
 /**
  * Get port from environment and store in Express.
