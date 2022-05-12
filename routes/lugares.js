@@ -2,11 +2,10 @@ var express = require('express');
 var router = express.Router();
 const dbo = require('../db/connection');
 
-const connection = dbo.getDb();
-
 /* GET all lugares. */
 router.get('/', function(req, res, next) {
-  connection.collection('lugares').find({}).limit(5)
+    const connection = dbo.getDb();
+    connection.collection('lugares').find({}).limit(5)
       .toArray(function (err, result){
         if (err){
           res.status(400).send('Error al buscar lugares');
