@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const dbo = require('../db/connection');
+const {ObjectID} = require("mongodb");
 
 /* GET all lugares. */
 router.get('/', function(req, res, next) {
@@ -15,33 +16,72 @@ router.get('/', function(req, res, next) {
       });
 });
 
-/*router.post('/', function(req, res, next) {
-  array_lugares.push({
-    nombre: req.body.nombre,
-    ubicacion: req.body.ubicacion,
-    ciudad: req.body.ciudad
-  })
-  //res.render('lugares', { title: 'Lugares', array_lugares})
-  res.json(array_lugares)
+/* Crear lugar */
+router.post('/', async function(req, res, next) {
+    const connection = dbo.getDb();
+    const lugar = {
+        nombre: req.body.nombre,
+        ubicacion: req.body.ubicacion,
+        ciudad: req.body.ciudad
+    }
+    connection
+        .collection('lugares')
+        .insertOne(lugar, function (err, result){
+            if (err){
+                res.status(400).send('Error al crear el lugar');
+            } else {
+                res.status(201).send();
+            }
+        });
+})
+
+
+/* GET lugar by ID. */
+router.get('/:id', async function(req, res, next) {
+    const connection = dbo.getDb();
+    connection
+        .collection('lugares')
+        .findOne({_id:ObjectID(req.params.id)}, function(err, result){
+            if (err){
+                res.status(400).send('Error al acceder al lugar');
+            } else {
+                res.json(result);
+            }
+        });
 });
 
-router.get('/:id', function(req, res) {
-  id = req.params.id;
-  console.log(id)
-  res.json(array_lugares[id])
-});*/
 
-array_lugares = [
-  {
-    nombre: "Santiago Bernabéu",
-    ubicacion: "Paseo de la Castellana nº 138",
-    ciudad: "Madrid"
-  },
-  {
-    nombre: "Universidad CEU San Pablo",
-    ubicacion: "Calle Julián Romea nº 23",
-    ciudad: "Madrid"
-  }
-]
+/* PUT lugar by ID. */
+router.put('/:id', async function(req, res, next) {
+    const connection = dbo.getDb();
+    connection
+        .collection('lugares')
+        .updateOne({_id:ObjectID(req.params.id)}, {$set:{
+                nombre: req.body.nombre,
+                ubicacion: req.body.ubicacion,
+                ciudad: req.body.ciudad
+            }}, function(err, result){
+            if (err){
+                res.status(400).send('Error al actualizar la información de un lugar');
+            } else {
+                res.status(204).send();
+            }
+        });
+});
+
+
+/* PUT lugar by ID. */
+router.delete('/:id', async function(req, res, next) {
+    const connection = dbo.getDb();
+    connection
+        .collection('lugares')
+        .deleteOne({_id:ObjectID(req.params.id)}, function(err, result){
+            if (err){
+                res.status(400).send('Error al borrar un lugar');
+            } else {
+                res.status(200).send();
+            }
+        });
+});
 
 module.exports = router;

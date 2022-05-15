@@ -192,10 +192,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/id'
       responses:
-        '201':
-          description: Ok
+        '204':
+          description: No Content
         default:
-          description: Error al acceder al lugar
+          description: Error al actualizar la información de un lugar
           content:
             application/json:
               schema:
@@ -217,7 +217,7 @@ paths:
         '200':
           description: Ok
         default:
-          description: Error al acceder al lugar
+          description: Error al borrar un lugar
           content:
             application/json:
               schema:
