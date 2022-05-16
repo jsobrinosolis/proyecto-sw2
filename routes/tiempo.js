@@ -1,4 +1,6 @@
 const axios = require("axios");
+var express = require('express');
+var router = express.Router();
 
 const options = {
     method: 'GET',
@@ -6,7 +8,7 @@ const options = {
     params: {location: 'torrelodones', format: 'json', u: 'f'},
     headers: {
         'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com',
-        'X-RapidAPI-Key': '4c76dd4318msh16b6c24ad054e42p1ff7f9jsn78c10b080470'
+        'X-RapidAPI-Key': ''
     }
 };
 
