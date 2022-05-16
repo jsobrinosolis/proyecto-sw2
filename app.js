@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var lugaresRouter = require('./routes/lugares');
 var organizadoresRouter = require('./routes/organizadores');
 var eventosRouter = require('./routes/eventos');
+var tiempoRouter = require('./routes/');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/users', usersRouter);
 app.use('/lugares', lugaresRouter);
 app.use('/organizadores', organizadoresRouter);
 app.use('/eventos', eventosRouter);
+app.use('/tiempo', tiempoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
