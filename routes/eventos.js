@@ -3,32 +3,33 @@ var router = express.Router();
 const dbo = require('../db/connection');
 const {ObjectID} = require("mongodb");
 
-/* GET all lugares. */
+/* GET all eventos. */
 router.get('/', function(req, res, next) {
     const connection = dbo.getDb();
-    connection.collection('lugares').find({}).limit(5)
+    connection.collection('eventos').find({}).limit(5)
       .toArray(function (err, result){
         if (err){
-          res.status(400).send('Error al buscar lugares');
+          res.status(400).send('Error al buscar eventos');
         } else {
           res.json(result);
         }
       });
 });
 
-/* Crear lugar */
+/* Crear evento */
 router.post('/', async function(req, res, next) {
     const connection = dbo.getDb();
-    const lugar = {
-        nombre: req.body.nombre,
-        ubicacion: req.body.ubicacion,
-        ciudad: req.body.ciudad
+    const evento = {
+        titulo: req.body.titulo,
+        descripcion: req.body.descripcion,
+        duracion: req.body.duracion,
+        aforo: req.body.aforo
     }
     connection
-        .collection('lugares')
-        .insertOne(lugar, function (err, result){
+        .collection('eventos')
+        .insertOne(evento, function (err, result){
             if (err){
-                res.status(400).send('Error al crear el lugar');
+                res.status(400).send('Error al crear el evento');
             } else {
                 res.status(201).send();
             }
@@ -36,14 +37,14 @@ router.post('/', async function(req, res, next) {
 })
 
 
-/* GET lugar by ID. */
+/* GET evento by ID. */
 router.get('/:id', async function(req, res, next) {
     const connection = dbo.getDb();
     connection
-        .collection('lugares')
+        .collection('eventos')
         .findOne({_id:ObjectID(req.params.id)}, function(err, result){
             if (err){
-                res.status(400).send('Error al acceder al lugar');
+                res.status(400).send('Error al acceder al evento');
             } else {
                 res.json(result);
             }
@@ -51,18 +52,19 @@ router.get('/:id', async function(req, res, next) {
 });
 
 
-/* PUT lugar by ID. */
+/* PUT evento by ID. */
 router.put('/:id', async function(req, res, next) {
     const connection = dbo.getDb();
     connection
-        .collection('lugares')
+        .collection('eventos')
         .updateOne({_id:ObjectID(req.params.id)}, {$set:{
-                nombre: req.body.nombre,
-                ubicacion: req.body.ubicacion,
-                ciudad: req.body.ciudad
+                titulo: req.body.titulo,
+                descripcion: req.body.descripcion,
+                duracion: req.body.duracion,
+                aforo: req.body.aforo
             }}, function(err, result){
             if (err){
-                res.status(400).send('Error al actualizar la información de un lugar');
+                res.status(400).send('Error al actualizar la información de un evento');
             } else {
                 res.status(204).send();
             }
@@ -70,14 +72,14 @@ router.put('/:id', async function(req, res, next) {
 });
 
 
-/* DELETE lugar by ID. */
+/* DELETE evento by ID. */
 router.delete('/:id', async function(req, res, next) {
     const connection = dbo.getDb();
     connection
-        .collection('lugares')
+        .collection('eventos')
         .deleteOne({_id:ObjectID(req.params.id)}, function(err, result){
             if (err){
-                res.status(400).send('Error al borrar un lugar');
+                res.status(400).send('Error al borrar un evento');
             } else {
                 res.status(200).send();
             }
