@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const dbo = require('../db/connection');
-const {ObjectID} = require("mongodb");
+const {ObjectID, ObjectId} = require("mongodb");
 
 /* GET all eventos. */
 router.get('/', function(req, res, next) {
@@ -23,7 +23,8 @@ router.post('/', async function(req, res, next) {
         titulo: req.body.titulo,
         descripcion: req.body.descripcion,
         duracion: req.body.duracion,
-        aforo: req.body.aforo
+        aforo: req.body.aforo,
+        lugar: req.body.lugar
     }
     connection
         .collection('eventos')
@@ -38,11 +39,50 @@ router.post('/', async function(req, res, next) {
 
 
 /* GET evento by ID. */
-router.get('/:id', async function(req, res, next) {
+/*router.get('/:id', async function(req, res, next) {
     const connection = dbo.getDb();
     connection
         .collection('eventos')
         .findOne({_id:ObjectID(req.params.id)}, function(err, result){
+            if (err){
+                res.status(400).send('Error al acceder al evento');
+            } else {
+                res.json(result);
+            }
+        });
+});*/
+
+router.get('/:id', async function(req, res, next) {
+    const connection = dbo.getDb();
+    const pipeline = [
+        {
+            $match: {
+                _id: ObjectId(req.params.id),
+            }
+        }, {
+            '$lookup': {
+                'from': 'lugares',
+                'let': {
+                    'nombre': '$lugar'
+                },
+                'pipeline': [
+                    {
+                        '$match': {
+                            '$expr': {
+                                '$eq': [
+                                    '$nombre', '$$nombre'
+                                ]
+                            }
+                        }
+                    }
+                ],
+                'as': 'lugar'
+            }
+        }
+    ]
+    connection
+        .collection('eventos')
+        .aggregate(pipeline, function(err, result){
             if (err){
                 res.status(400).send('Error al acceder al evento');
             } else {
@@ -61,7 +101,8 @@ router.put('/:id', async function(req, res, next) {
                 titulo: req.body.titulo,
                 descripcion: req.body.descripcion,
                 duracion: req.body.duracion,
-                aforo: req.body.aforo
+                aforo: req.body.aforo,
+                lugar: req.body.lugar
             }}, function(err, result){
             if (err){
                 res.status(400).send('Error al actualizar la información de un evento');
