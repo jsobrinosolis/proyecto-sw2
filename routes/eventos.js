@@ -24,7 +24,8 @@ router.post('/', async function(req, res, next) {
         descripcion: req.body.descripcion,
         duracion: req.body.duracion,
         aforo: req.body.aforo,
-        lugar: req.body.lugar
+        lugar: req.body.lugar,
+        organizador: req.body.organizador
     }
     connection
         .collection('eventos')
@@ -37,21 +38,7 @@ router.post('/', async function(req, res, next) {
         });
 })
 
-
 /* GET evento by ID. */
-/*router.get('/:id', async function(req, res, next) {
-    const connection = dbo.getDb();
-    connection
-        .collection('eventos')
-        .findOne({_id:ObjectID(req.params.id)}, function(err, result){
-            if (err){
-                res.status(400).send('Error al acceder al evento');
-            } else {
-                res.json(result);
-            }
-        });
-});*/
-
 router.get('/:id', async function(req, res, next) {
     const connection = dbo.getDb();
     const pipeline = [
@@ -78,9 +65,29 @@ router.get('/:id', async function(req, res, next) {
                 ],
                 'as': 'lugar'
             }
+        }, {
+            '$lookup': {
+                'from': 'organizadores',
+                'let': {
+                    'nombre': '$organizador'
+                },
+                'pipeline': [
+                    {
+                        '$match': {
+                            '$expr': {
+                                '$eq': [
+                                    '$nombre_empresa', '$$nombre'
+                                ]
+                            }
+                        }
+                    }
+                ],
+                'as': 'organizador'
+            }
         }
+
     ]
-    const query = connection.collection('eventos').aggregate(pipeline);
+    const query = await connection.collection('eventos').aggregate(pipeline).next();
     res.json(query);
 
 });
@@ -96,7 +103,8 @@ router.put('/:id', async function(req, res, next) {
                 descripcion: req.body.descripcion,
                 duracion: req.body.duracion,
                 aforo: req.body.aforo,
-                lugar: req.body.lugar
+                lugar: req.body.lugar,
+                organizador: req.body.organizadores
             }}, function(err, result){
             if (err){
                 res.status(400).send('Error al actualizar la información de un evento');
