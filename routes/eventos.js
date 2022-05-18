@@ -80,15 +80,9 @@ router.get('/:id', async function(req, res, next) {
             }
         }
     ]
-    connection
-        .collection('eventos')
-        .aggregate(pipeline, function(err, result){
-            if (err){
-                res.status(400).send('Error al acceder al evento');
-            } else {
-                res.json(result);
-            }
-        });
+    const query = connection.collection('eventos').aggregate(pipeline);
+    res.json(query);
+
 });
 
 
