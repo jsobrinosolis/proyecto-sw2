@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var lugaresRouter = require('./routes/lugares');
 var organizadoresRouter = require('./routes/organizadores');
 var eventosRouter = require('./routes/eventos');
-var tiempoRouter = require('./routes/');
+var tiempoRouter = require('./routes/tiempo');
 
 var app = express();
 
