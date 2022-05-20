@@ -104,7 +104,7 @@ router.put('/:id', async function(req, res, next) {
                 duracion: req.body.duracion,
                 aforo: req.body.aforo,
                 lugar: req.body.lugar,
-                organizador: req.body.organizadores
+                organizador: req.body.organizador
             }}, function(err, result){
             if (err){
                 res.status(400).send('Error al actualizar la información de un evento');
