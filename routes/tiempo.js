@@ -9,7 +9,7 @@ router.get('/:location', function(req, res, next) {
         params: {q: req.params.location},
         headers: {
             'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com',
-            'X-RapidAPI-Key': '4c76dd4318msh16b6c24ad054e42p1ff7f9jsn78c10b080470'
+            'X-RapidAPI-Key': ''
         }
     };
 
