@@ -31,6 +31,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/eventos'
+        default:
+          description: Error al buscar eventos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
     post:
       summary: Crear un nuevo evento
       description: TODO
@@ -72,12 +78,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/evento'
-        default:
-          description: Error al acceder al evento
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
       parameters:
         - $ref: '#/components/parameters/id'
     put:
@@ -89,10 +89,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/id'
       responses:
-        '201':
-          description: Ok
+        '204':
+          description: No Content
         default:
-          description: Error al acceder al evento
+          description: Error al actualizar la información de un evento
           content:
             application/json:
               schema:
@@ -114,7 +114,7 @@ paths:
         '200':
           description: Ok
         default:
-          description: Error al acceder al evento
+          description: Error al borrar un evento
           content:
             application/json:
               schema:
@@ -134,6 +134,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/lugares'
+        default:
+          description: Error al buscar lugares
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
     post:
       summary: Crear un nuevo lugar
       description: TODO
@@ -237,6 +243,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/organizadores'
+        default:
+          description: Error al buscar organizadores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
     post:
       summary: Crear un nuevo organizador
       description: TODO
@@ -295,10 +307,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/id'
       responses:
-        '201':
-          description: Ok
+        '204':
+          description: No Content
         default:
-          description: Error al acceder al organizador
+          description: Error al actualizar la información de un organizador
           content:
             application/json:
               schema:
@@ -320,7 +332,7 @@ paths:
         '200':
           description: Ok
         default:
-          description: Error al acceder al organizador
+          description: Error al borrar un organizador
           content:
             application/json:
               schema:
