@@ -9,6 +9,7 @@ var lugaresRouter = require('./routes/lugares');
 var organizadoresRouter = require('./routes/organizadores');
 var eventosRouter = require('./routes/eventos');
 var tiempoRouter = require('./routes/tiempo');
+var lugaresXMLRouter = require('./routes/lugaresXML');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use('/lugares', lugaresRouter);
 app.use('/organizadores', organizadoresRouter);
 app.use('/eventos', eventosRouter);
 app.use('/tiempo', tiempoRouter);
+app.use('/lugaresXML', lugaresXMLRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
