@@ -12,6 +12,9 @@ var tiempoRouter = require('./routes/tiempo');
 var lugaresPutRouter = require('./routes/lugaresPut');
 var lugarRouter = require('./routes/lugar');
 var lugarDeleteRouter = require('./routes/lugarDelete');
+var organizadoresPutRouter = require('./routes/organizadoresPut');
+var organizadorRouter = require('./routes/organizador');
+var organizadorDeleteRouter = require('./routes/organizadorDelete');
 
 var app = express();
 
@@ -33,6 +36,9 @@ app.use('/tiempo', tiempoRouter);
 app.use('/lugaresPut', lugaresPutRouter);
 app.use('/lugar', lugarRouter);
 app.use('/lugarDelete', lugarDeleteRouter);
+app.use('/organizadoresPut', organizadoresPutRouter);
+app.use('/organizador', organizadorRouter);
+app.use('/organizadorDelete', organizadorDeleteRouter);
 
 
 

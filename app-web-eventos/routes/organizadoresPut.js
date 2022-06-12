@@ -8,13 +8,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     axios.put('http://localhost:3000/organizadores/' + req.body.idOrganizador, {
-        nombre: req.body.nombre,
-        ubicacion: req.body.ubicacion,
-        ciudad: req.body.ciudad
+        nombre_empresa: req.body.nombre_empresa,
+        pais_origen: req.body.pais_origen,
+        owner: req.body.owner
     })
         .then(response => {
-            console.log("Lugar modificado");
-            res.render('index', { title: 'Lugares', mensaje: 'Lugar modificado correctamente' });
+            console.log("Organizador modificado");
+            res.render('index', { title: 'Organizadores', mensaje: 'Organizador modificado correctamente' });
         })
         .catch(error => {
             console.log(error);
