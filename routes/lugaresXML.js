@@ -3,7 +3,6 @@ var router = express.Router();
 const dbo = require('../db/connection');
 const {ObjectID} = require("mongodb");
 var xml = require('xml');
-var Js2Xml = require("js2xml").Js2Xml;
 var js2xmlparser = require("js2xmlparser");
 
 /* GET all lugares. */
