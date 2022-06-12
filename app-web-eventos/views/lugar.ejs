@@ -13,6 +13,24 @@
   <input type="submit" value="GET by ID">
 </form>
 <p>Volver al Index: <a class="button" href="http://localhost:5000/">Index</a></p>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Ubicación</th>
+    <th>Ciudad</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= location._id %></td>
+      <td><%= location.nombre %></td>
+      <td><%= location.ubicacion %></td>
+      <td><%= location.ciudad %></td>
+    </tr>
+  </tbody>
+</table>
 </body>
 <script type="text/javascript">
   document.getElementById("getButton").onclick = function () {
