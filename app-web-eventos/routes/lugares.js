@@ -7,9 +7,7 @@ const axios = require('axios');
 router.get('/', function(req, res, next) {
     axios.get('http://localhost:3000/lugares')
         .then(response => {
-            console.log(response.data);
             res.render('lugares', { title: 'Lugares', locations: response.data });
-            //res.json(response.data);
         })
         .catch(error => {
             console.log(error);
