@@ -28,8 +28,8 @@ router.get('/:id', async function(req, res, next) {
             if (err){
                 res.status(400).send('Error al acceder al lugar');
             } else {
-                res.set('Content-Type', 'text/xml');
-                res.send(xml({lugar: result}));
+                var js2xml = js2xmlparser.parse("lugar", result);
+                res.send(js2xml.toString());
             }
         });
 });
