@@ -18,6 +18,7 @@ var organizadorDeleteRouter = require('./routes/organizadorDelete');
 var eventosPutRouter = require('./routes/eventosPut');
 var eventoDeleteRouter = require('./routes/eventoDelete');
 var eventoRouter = require('./routes/evento');
+var lugaresXMLRouter = require('./routes/lugaresXML');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use('/organizadorDelete', organizadorDeleteRouter);
 app.use('/eventosPut', eventosPutRouter);
 app.use('/eventoDelete', eventoDeleteRouter);
 app.use('/evento', eventoRouter);
+app.use('/lugaresXML', lugaresXMLRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
