@@ -27,17 +27,5 @@ router.post('/', function(req, res, next) {
         });
 });
 
-/* PUT organizador by ID. */
-router.put('/:id', function(req, res, next) {
-    axios.put('http://localhost:3000/organizadores/' + req.params.id, req.body)
-        .then(response => {
-            console.log(response.data);
-            res.render('organizadores', { title: 'Organizadores', organizadores: response.data });
-            //res.json(response.data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-});
 
 module.exports = router;

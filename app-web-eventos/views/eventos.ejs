@@ -8,18 +8,45 @@
   <body>
   <h1> <%= title %> </h1>
   <button id="getButton" type="button" class="btn btn-default">GET</button>
-  <button type="button" class="btn btn-default">POST</button>
-  <button type="button" class="btn btn-default">PUT</button>
-  <button type="button" class="btn btn-default">DELETE</button><br><br>
-  <form>
+  <a class="button" href="http://localhost:5000/eventosPut">PUT</a>
+  <a class="button" href="http://localhost:5000/evento">GET by ID</a>
+  <a class="button" href="http://localhost:5000/eventoDelete">DELETE by ID</a><br><br>
+  <form method="post">
     <input type="text" name="titulo" placeholder="Título">
     <input type="text" name="descripcion" placeholder="Descripción">
     <input type="text" name="duracion" placeholder="Duración">
     <input type="text" name="aforo" placeholder="Aforo">
     <input type="text" name="lugar" placeholder="Lugar">
     <input type="text" name="organizador" placeholder="Organizador">
+    <input type="submit" value="POST">
   </form>
   <p>Volver al Index: <a class="button" href="http://localhost:5000/">Index</a></p>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Descripción</th>
+      <th>Duración</th>
+      <th>Aforo</th>
+      <th>Lugar</th>
+      <th>Organizador</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% eventos.forEach(function(item) { %>
+      <tr>
+        <td><%= item._id %></td>
+        <td><%= item.titulo %></td>
+        <td><%= item.descripcion %></td>
+        <td><%= item.duracion %></td>
+        <td><%= item.aforo %></td>
+        <td><%= item.lugar %></td>
+        <td><%= item.organizador %></td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </table>
   </body>
   <script type="text/javascript">
     document.getElementById("getButton").onclick = function () {
