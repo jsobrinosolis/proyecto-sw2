@@ -6,9 +6,7 @@ const axios = require('axios');
 router.get('/', function(req, res, next) {
     axios.get('http://localhost:3000/organizadores')
         .then(response => {
-            console.log(response.data);
             res.render('organizadores', { title: 'Organizadores', organizadores: response.data });
-            //res.json(response.data);
         })
         .catch(error => {
             console.log(error);
@@ -19,7 +17,6 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     axios.post('http://localhost:3000/organizadores', req.body)
         .then(response => {
-            console.log(response.data);
             res.render('index', { title: 'Organizadores', mensaje: 'Organizador creado correctamente' });
         })
         .catch(error => {
