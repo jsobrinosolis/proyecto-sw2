@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+  <h1> <%= title %> </h1>
+  <button id="getButton" type="button" class="btn btn-default">GET</button>
+  <a class="button" href="http://localhost:5000/lugaresPut">PUT</a>
+  <a class="button" href="http://localhost:5000/lugar">GET by ID</a>
+  <a class="button" href="http://localhost:5000/lugarDelete">DELETE by ID</a><br><br>
+  <form method="post">
+    <input type="text" name="nombreEmpresa" placeholder="Nombre Empresa">
+    <input type="text" name="paisOrigen" placeholder="País Origen">
+    <input type="text" name="owner" placeholder="Dueño">
+    <input type="submit" name="submit" placeholder="POST">
+  </form>
+  <p>Volver al Index: <a class="button" href="http://localhost:5000/">Index</a></p>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre Empresa</th>
+      <th>País Origen</th>
+      <th>Dueño</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% organizadores.forEach(function(item) { %>
+      <tr>
+        <td><%= item._id %></td>
+        <td><%= item.nombre_empresa %></td>
+        <td><%= item.pais_origen %></td>
+        <td><%= item.owner %></td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </table>
+  </body>
+  <script type="text/javascript">
+    document.getElementById("getButton").onclick = function () {
+      location.href = "/organizadores";
+    };
+  </script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+  <h1> <%= title %> </h1>
+  <button id="getButton" type="button" class="btn btn-default">GET</button>
+  <a class="button" href="http://localhost:5000/lugaresPut">PUT</a>
+  <a class="button" href="http://localhost:5000/lugar">GET by ID</a>
+  <a class="button" href="http://localhost:5000/lugarDelete">DELETE by ID</a><br><br>
+  <form method="post">
+    <input type="text" name="nombre" placeholder="Nombre">
+    <input type="text" name="ubicacion" placeholder="Ubicación">
+    <input type="text" name="ciudad" placeholder="Ciudad">
+    <input type="submit" value="POST">
+  </form>
+  <p>Volver al Index: <a class="button" href="http://localhost:5000/">Index</a></p>
+  </body>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+        <th>Ciudad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% locations.forEach(function(item) { %>
+        <tr>
+          <td><%= item._id %></td>
+          <td><%= item.nombre %></td>
+          <td><%= item.ubicacion %></td>
+          <td><%= item.ciudad %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <script type="text/javascript">
+    document.getElementById("getButton").onclick = function () {
+      location.href = "/lugares";
+    };
+
+  </script>
+</html>

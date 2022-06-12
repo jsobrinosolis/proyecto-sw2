@@ -70,7 +70,7 @@ router.put('/:id', async function(req, res, next) {
 });
 
 
-/* PUT organizador by ID. */
+/* DELETE organizador by ID. */
 router.delete('/:id', async function(req, res, next) {
   const connection = dbo.getDb();
   connection

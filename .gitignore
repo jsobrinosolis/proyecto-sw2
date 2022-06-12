@@ -1,3 +1,4 @@
 # Project exclude paths
 /node_modules/
 /gen/
+/app-web-eventos/node_modules/

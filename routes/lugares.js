@@ -6,7 +6,7 @@ const {ObjectID} = require("mongodb");
 /* GET all lugares. */
 router.get('/', function(req, res, next) {
     const connection = dbo.getDb();
-    connection.collection('lugares').find({}).limit(5)
+    connection.collection('lugares').find({})
       .toArray(function (err, result){
         if (err){
           res.status(400).send('Error al buscar lugares');
