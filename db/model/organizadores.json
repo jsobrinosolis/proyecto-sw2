@@ -1,0 +1,16 @@
+[{
+    "_id": {
+      "$oid": "62855e573365908bc64f453c"
+    },
+    "nombre_empresa": "EPS",
+    "pais_origen": "España",
+    "owner": "USP CEU"
+  },
+  {
+    "_id": {
+      "$oid": "62866c3e4042e5a59dd431a0"
+    },
+    "nombre_empresa": "Amazon",
+    "pais_origen": "EEUU",
+    "owner": "Jeff Bezos"
+  }]

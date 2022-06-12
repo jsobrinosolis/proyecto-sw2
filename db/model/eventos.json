@@ -1,0 +1,22 @@
+[{
+    "_id": {
+      "$oid": "62855efa53c091ce3ba3cf65"
+    },
+    "titulo": "Evento de prueba",
+    "descripcion": "Descripción de prueba de un evento de prueba",
+    "duracion": 200,
+    "aforo": 3000,
+    "lugar": "Lugar de prueba",
+    "organizador": "Empresa Prueba"
+  },
+  {
+    "_id": {
+      "$oid": "6287b2a9b05769ba9c482480"
+    },
+    "titulo": "El Clásico",
+    "descripcion": "Partido de fútbol: Real Madrid vs Barcelona",
+    "duracion": 90,
+    "aforo": 85000,
+    "lugar": "Santiago Bernabéu",
+    "organizador": "La Liga"
+  }]

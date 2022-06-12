@@ -1,0 +1,16 @@
+[{
+    "_id": {
+      "$oid": "627d58fccf9972c9645ffe1a"
+    },
+    "nombre": "Santiago Bernabéu",
+    "ubicacion": "Paseo de la Castellana",
+    "ciudad": "Madrid"
+  },
+  {
+    "_id": {
+      "$oid": "62a4c3a187c951de2f68db0a"
+    },
+    "nombre": "KPMG",
+    "ubicacion": "Paseo de la Castellana",
+    "ciudad": "Madrid"
+}]
